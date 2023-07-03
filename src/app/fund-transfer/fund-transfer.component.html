@@ -1,0 +1,175 @@
+<div class="screen-overlay" id="screen-overlay" (click)="closeAnother()" [ngClass]="anotherAccount==true?'active':''"></div>
+
+<nav class="head-nav">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-3"><a href="" class="back"><img src="./assets/arrow-left-white.svg" alt=""></a></div>
+            <div class="col-6 text-center"><h1 class="text-white">Fund Transfer</h1></div>
+            <div class="col-3 text-right"><a href="" class="help"><img src="./assets/help.svg" alt=""></a></div>
+        </div>
+    </div>
+</nav>
+
+<main class="page-wrapper">
+    
+    <!-- /////////////////////////////////////////////////// DETAILS SCREEN -->
+    <article class="details-block grey">
+        <div class="containder wide">
+            <div class="grey-box">
+                <div class="row align-items-center">
+                    <div class="col-2 col-no-p-right">
+                        <div class="logo"><img src="./assets/icici.png" alt="" style="width: 28px;" /></div>
+                    </div>
+                    <div class="col-8 middle-column">
+                        <h1 class="account-number color-grey">Ashok & Sons</h1>
+                        <p class="fill-account-num">{{ account }}</p>
+                    </div>
+                    <div class="col-2 col-no-p-left text-right">
+                        <a href="" class="edit-icon"><img src="./assets/pencil-grey.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- /////////////////////////////////////////////////// FORM WRAPPER -->
+    <article class="form-wrapper">
+        <div class="container">
+            <form method="POST" action="" #heroForm="ngForm">
+                <div class="form-group">
+                    <label id="amount-label" for="amount">Enter Amount</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><img src="./assets/rupees.svg" alt=""><div class="border"></div></div>
+                        </div>
+                        <input type="text" class="input form-control" id="amount" name="amount" onlyNumber placeholder="Amount" [value]="amount" [(ngModel)]="amount" (keyup)="amountChange($event.target)" (change)="onChangeValue($event.target)" />
+                    </div>
+                    <!-- <div class="input block">
+                        <div class="row2">
+                            <div class="icon text-center left"><img src="./assets/rupees.svg" alt=""><div class="border"></div></div>
+                            <div class="input-wrapper">
+                                <input type="text" name="amount" >
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <!-- <p class="text-right color-orange italic amount-in-words">Ten Thousand Rupees only</p> -->
+                </div>
+                <div class="form-group">
+                    <label for="add-remarks">Add Remarks <span class="fw-normal">(Optional)</span></label>
+                    <div class="row button-select-wrap">
+                        <div class="col cust-col">
+                            <input type="radio" id="rent" name="remark" [(ngModel)]="remark" [value]="'Rent'" (click)="onRadioChange('Rent')" />
+                            <label for="rent" class="btn default block" data-val="Rent" [ngClass]="remark=='Rent'?'active':''">Rent</label>
+                        </div>
+                        <div class="col cust-col">
+                            <input type="radio" id="salary" name="remark" [(ngModel)]="remark" [value]="'Salary'" (click)="onRadioChange('Salary')"/>
+                            <label for="salary" class="btn default block" data-val="Salary" [ngClass]="remark=='Salary'?'active':''">Salary</label>
+                        </div>
+                        <div class="col cust-col">
+                            <input type="radio" id="others" name="remark" [(ngModel)]="remark" [value]="'Others'" (click)="onRadioChange('Others')"/>
+                            <label for="others" class="btn default block"  data-val="Others" [ngClass]="remark=='Others'?'active':''">Others</label>
+                        </div>
+                    </div>
+                    <div class="other-input-wrap form-group" *ngIf="remark=='Others'">
+                        <input type="text" name="remark_other" (change)="setRemark($event.target)" [(ngModel)]="remark_other" class="form-control" id="remark-other" placeholder="Search For Transaction Using Remarks Later" value=""  />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </article>
+
+
+</main>
+
+
+<!-- /////////////////////////////////////////////////// BOTTOM TRAY -->
+<div class="bottom-tray">
+    <div class="inner-wrap border-radius-top">
+        <header class="tray-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h1 class="color-blue">Transfer Using</h1>
+                </div>
+                <div class="col text-right">
+                    <a href="javascript:void(0)" id="select-account-trigger" (click)="openAnotherAccount()" class="color-ornage" id="">
+                    <span class="italic">Select another Account &nbsp;</span> 
+                    <span class="icon"><img src="./assets/double-arrow-right-orange.svg" alt="" /></span></a>
+                </div>
+            </div>
+        </header>
+        <div class="tray-body">
+            <ul class="bank-accounts-list">
+                <li>
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <h1 class="account-number color-grey fill-account-num">{{account}}</h1>
+                            <a href="#" class="btn-blue color-blue light small" (click)="showBalance()" *ngIf="checkBalance == false">
+                                <span><span class="icon"><img src="./assets/checked-blue.svg" alt=""></span> &nbsp;Check Balance</span>
+                            </a>
+                            <p *ngIf="checkBalance == true" class="italic color-orange" style="margin-top: 4px;">Account Balance : ₹12,00,000.00</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <img src="./assets/checked.svg" alt="">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="bottom-btn-wrap">
+                <button class="btn btn-block btn-blue btn-rounded big" (click)="submitAmount()" [disabled]="amount == '' || amount <= 0" [routerLink]="['/pay']">Proceed To Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /////////////////////////////////////////////////// BOTTOM TRAY -->
+<div class="bottom-tray over" id="#select-account-box" [ngClass]="anotherAccount==true?'active':''">
+    <span class="close"><img src="./assets/close.svg" alt="" (click)="closeAnother()" /></span>
+    <div class="inner-wrap border-radius-top">
+        <header class="tray-header no-border">
+            <h1 class="extra-big color-blue text-center">Transfer Using</h1>
+        </header>
+        <div class="tray-body">
+            <ul class="bank-accounts-list">
+                <li>
+                    <div class="bank-account-select" (click)="updateAccount('XXXX XXXX XXXX 5117')" [ngClass]="account=='XXXX XXXX XXXX 5117'?'active':''">
+                        <div class="row align-items-center">
+                            <div class="col-2 col-no-p-right">
+                                <div class="logo"><img src="./assets/icici.png" alt="" style="width: 28px;" /></div>
+                            </div>
+                            <div class="col-8 middle-column">
+                                <h1 class="account-number color-grey account-select">XXXX XXXX XXXX 5117</h1>
+                                <p class="italic color-orange">Account Balance : ₹12,00,000.00</p>
+                            </div>
+                            <div class="col-2 col-no-p-left text-right">
+                                <span class="checked-icon"><img src="./assets/checked.svg" alt=""></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="bank-account-select" (click)="updateAccount('XXXX XXXX XXXX 8494')" [ngClass]="account=='XXXX XXXX XXXX 8494'?'active':''">
+                        <div class="row align-items-center">
+                            <div class="col-2 col-no-p-right">
+                                <div class="logo"><img src="./assets/icici.png" alt="" style="width: 28px;" /></div>
+                            </div>
+                            <div class="col-8 middle-column">
+                                <h1 class="account-number color-grey account-select">XXXX XXXX XXXX 8494</h1>
+                                <a href="#" class="btn-blue color-blue light small">
+                                    <span class="icon"><img src="./assets/checked-blue.svg" alt=""></span> &nbsp;Check Balance
+                                </a>
+                            </div>
+                            <div class="col-2 col-no-p-left text-right">
+                                <span class="checked-icon"><img src="./assets/checked.svg" alt=""></span>
+                            </div>
+                        </div>
+                    </div>
+                </li> 
+            </ul>
+            <!-- <div class="bottom-btn-wrap">
+                <button class="btn btn-block btn-blue btn-rounded big" (click)="closeAnother()">Proceed To Confirm</button>
+            </div> -->
+        </div>
+    </div>
+</div>

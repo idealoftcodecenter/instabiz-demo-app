@@ -1,0 +1,103 @@
+<div class="complete-page-wrap">
+    <div class="screen-overlay" id="screen-overlay"></div>
+
+    <!-- /////////////////////////////////////////////////// HEAD NAVIGATION -->
+    <nav class="head-nav">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-3"><a href="" class="back"><img src="./assets/arrow-left-white.svg" alt=""></a></div>
+                <div class="col-6 text-center"><h1 class="text-white">Confirm to Pay</h1></div>
+                <div class="col-3 text-right"><a href="" class="help"><img src="./assets/help.svg" alt=""></a></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-wrapper">
+        <p class="confirm-text text-center">You have chosen to make the following fund<br>transfer. Please confirm to proceed.</p>
+        <p class="date light text-center">
+            {{transferDate | date: "WWW, dd MMM yyyy"}} at {{transferDate | date: "HH:mm a"}}
+            <!-- Mon, 01 Jun 2020 at 10:51 AM -->
+        </p>
+
+        <div class="payment-details">
+            <header>
+                <div class="row align-items-center">
+                    <div class="col-3 sp-col"><div class="icon"><img src="./assets/send-money-orange.svg" alt=""><div class="line left orange"></div></div></div>
+                    <div class="col-6 sp-col text-center">
+                        You are Transferring
+                        <h1>₹{{amount}}</h1>
+                    </div>
+                    <div class="col-3 sp-col text-right"><div class="icon"><img src="./assets/icici.png" alt=""><div class="line right blue"></div></div></div>
+                </div>
+            </header>
+            <div class="details">
+                <div class="row align-items-center">
+                    <div class="col-5">
+                        <p>Payee Name</p>
+                    </div>
+                    <div class="col-7">
+                        <p class="color-blue info">Ashok Balaji Enterprise</p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-5">Payee Bank Name</div>
+                    <div class="col">
+                        <p class="info">ICICI Bank</p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-5">To Account No.</div>
+                    <div class="col">
+                        <p class="info">XXXX XXXX XXXX 7001</p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-5">From Account No.</div>
+                    <div class="col">
+                        <p class="info">{{account}}</p>
+                    </div>
+                </div>
+                <!-- <div class="row align-items-center">
+                    <div class="col-5">Amount</div>
+                    <div class="col">
+                        <p class="info">{{amount}} Rupees</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </main>
+
+
+    <!-- /////////////////////////////////////////////////// BOTTOM TRAY -->
+    <div class="bottom-tray">
+        <div class="inner-wrap border-radius-top">
+            <header class="tray-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h1 class="color-blue">Payment Type</h1>
+                    </div>
+                    <div class="col text-right">
+                        <a href="#" id="select-account-trigger" class="color-ornage" id=""><span class="italic">Select another mode &nbsp;</span> <span class="icon"><img src="./assets/double-arrow-right-orange.svg" alt="" /></span></a>
+                    </div>
+                </div>
+            </header>
+            <div class="tray-body">
+                <ul class="bank-accounts-list">
+                    <li>
+                        <div class="row align-items-center">
+                            <div class="col-9">
+                                <h1 class="account-number color-grey normal"><span class="icon"><img src="./assets/{{method}}.svg" alt=""></span> <span class="transfer-type-text">{{method | uppercase}} {{methodFeature}}</span> <span class="icon info orange small"><img src="./assets/info.svg" alt=""></span></h1>
+                            </div>
+                            <div class="col-3 text-center">
+                                <img src="./assets/checked.svg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="bottom-btn-wrap">
+                    <button class="btn btn-block btn-blue btn-rounded big">Proceed To Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
